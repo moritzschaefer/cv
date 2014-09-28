@@ -49,14 +49,14 @@
 \RequirePackage[quiet]{fontspec}
 \RequirePackage[math-style=TeX,vargreek-shape=unicode]{unicode-math}
 
-\newfontfamily\bodyfont[]{Helvetica Neue}
-\newfontfamily\thinfont[]{Helvetica Neue UltraLight}
-\newfontfamily\headingfont[]{Helvetica Neue Condensed Bold}
+\newfontfamily\bodyfont[]{TeX Gyre Heros}
+\newfontfamily\thinfont[]{TeX Gyre Heros}
+\newfontfamily\headingfont[]{TeX Gyre Heros Bold}
 
 \defaultfontfeatures{Mapping=tex-text}
-\setmainfont[Mapping=tex-text, Color=textcolor]{Helvetica Neue Light}
+\setmainfont[Mapping=tex-text, Color=textcolor]{TeX Gyre Heros}
 
-\setmathfont{XITS Math}
+\setmathfont{Arial}
 
 %%%%%%%%%%
 % Header %
