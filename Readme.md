@@ -1,3 +1,8 @@
+# Usage/Notes
+
+If you don't have Helvetica. TeX Gyro is an alternative.
+As well note that the math font in friggeri-cv may not be found. If you don't use math, just comment or use Arial
+
 # About
 Latest version of my CV, typesetted in Helvetica and using colors inspired by Monokai (there is an `print` option which renders in black and white, and reverts the header to dark on light, if printing on paper is needed).
 
