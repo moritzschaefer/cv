@@ -56,7 +56,7 @@
 \defaultfontfeatures{Mapping=tex-text}
 \setmainfont[Mapping=tex-text, Color=textcolor]{TeX Gyre Heros}
 
-\setmathfont{Arial}
+%\setmathfont{Arial}
 
 %%%%%%%%%%
 % Header %
