@@ -1,6 +1,8 @@
 %!TEX TS-program = xelatex
 \documentclass[]{friggeri-cv}
 
+\usepackage{enumitem} \renewenvironment{entrylist}{ \begin{itemize}[leftmargin=1in]}{ \end{itemize} } \renewcommand{\bfseries}{\headingfont\color{headercolor}} \renewcommand{\entry}[4]{ \item[#1] \textbf{#2} \hfill {\footnotesize\addfontfeature{Color=lightgray} #3}\\ #4\vspace{\parsep} }
+
 \begin{document}
 \header{Moritz Schäfer}{}
        {computer scientist}
@@ -23,18 +25,18 @@
     french notions
   \section{coding}
     %{\color{red} $\varheartsuit$} JavaScript
-    Linux, Docker, Git, 3D \& GPGPU, Databases, ML/Data analysis
+    linux, docker, GPGPU, ML/data analysis, databases
     Web:
-    Python, Ruby,
-    HTML5(JS \& CSS3); frameworks: AngularJS, Flask, Rails, Meteor
+    python
+    HTML5(JS \& CSS3); frameworks: ReactJS, AngularJS, Flask
     former:
-    PHP, C, C++, Java, 3D/OpenGL, Android
+    C/C++, 3D/OpenGL, Android
 \end{aside}
 
 
 \section{interests}
 
-computational biology/protein folding, \\
+computational biology, genomics, protein folding, \\
 machine learning, data mining and analytics, \\
 web technologies%(full stack development),
 % hardware/electronics(pi/arduino), bluetooth le,
@@ -43,7 +45,12 @@ web technologies%(full stack development),
 
 \begin{entrylist}
   \entry
-    {2016-}
+    {2017-2018}
+    {master thesis}
+    {Bayer AG @ oncology target discovery}
+    {Bioinformatics}
+  \entry
+    {2016-2018}
     {M.Sc.}
     {TU Berlin}
     {Computer Science}
@@ -76,7 +83,7 @@ web technologies%(full stack development),
     {2017}
     {{Antavi GmbH}}
     {Software developer}
-    {\emph{Android \& iOS devlopment}}
+    {\emph{Android \& iOS development}}
   \entry
     {2016}
     {{Lamoda Group}}
