@@ -1,157 +1,218 @@
-%!TEX TS-program = xelatex
-\documentclass[]{friggeri-cv}
+\documentclass[11pt,a4paper]{moderncv}
+% TODO https://tex.stackexchange.com/questions/54859/range-of-dates-1999-01-2012-12
 
-\usepackage{enumitem} \renewenvironment{entrylist}{ \begin{itemize}[leftmargin=1in]}{ \end{itemize} } \renewcommand{\bfseries}{\headingfont\color{headercolor}} \renewcommand{\entry}[4]{ \item[#1] \textbf{#2} \hfill {\footnotesize\addfontfeature{Color=lightgray} #3}\\ #4\vspace{\parsep} }
+% moderncv themes
+\moderncvtheme[green]{casual}                 % optional argument are 'blue' (default), 'orange', 'red', 'green', 'grey' and 'roman' (for roman fonts, instead of sans serif fonts)
+%\moderncvtheme[green]{classic}                % idem
 
+% character encoding
+\usepackage[english]{babel}
+\usepackage[ansinew]{inputenc}                   % replace by the encoding you are using
+
+% adjust the page margins
+\usepackage[scale=0.8]{geometry}
+\usepackage{graphicx}
+\setlength{\hintscolumnwidth}{3.6cm}                        % if you want to change the width of the column with the dates
+
+\usepackage{lmodern}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage[T1]{fontenc}
+
+%\AtBeginDocument{\setlength{\maketitlenamewidth}{6cm}}  % only for the classic theme, if you want to change the width of your name placeholder (to leave more space for your address details
+%\AtBeginDocument{\recomputelengths}                     % required when changes are made to page layout lengths
+
+% TODO where to add github?
+%----------------------------------------------------------------------------------
+%            Kontaktdaten
+%----------------------------------------------------------------------------------
+% VORNAME
+\firstname{Moritz}
+% NACHNAME
+\familyname{Sch�fer}
+%TITEL (optional, ggf. einfach die Zeile lˆschen!)
+\title{curriculum vit\ae}
+%ADRESSE  (optional, ggf. einfach die Zeile lˆschen!)
+\address{}
+%HANDYNUMMER  (optional, ggf. einfach die Zeile lˆschen!)
+\mobile{+49 176 47728841}
+%FESTNETZNUMMER  (optional, ggf. einfach die Zeile lˆschen!)
+%\phone{0123 / 12345678}
+%EMAIL-ADRESSE  (optional, ggf. einfach die Zeile lˆschen!)
+\email{mail@moritzs.de}
+%HOMEPAGE  (optional, ggf. einfach die Zeile lˆschen!)
+% \homepage{moritzs.de}
+\homepage{github.com/moritzschaefer}
+%FOTO  (optional, ggf. einfach die Zeile lˆschen!)
+%  64pt = Hˆhe des Bildes, 'picture' = Name des Bildes
+% \photo[110pt]{cv.jpeg}
+
+% to show numerical labels in the bibliography; only useful if you make citations in your resume
+\makeatletter
+\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+\makeatother
+% \defbibheading{bibliography}[Publications]{\section{#1}}
+
+
+%----------------------------------------------------------------------------------
+%            Inhalt
+%----------------------------------------------------------------------------------
 \begin{document}
-\header{Moritz Schäfer}{}
-       {computer scientist}
+\maketitle
+\section{Personal data}
+\cvline{Date of birth}{06th of January 1992}
+\cvline{Place of birth}{T�bingen, Germany}
+\cvline{Nationality}{german}
+
+\section{Studies}
+\subsection{PhD applicant in Biology/Bioinformatics}
+\cvline{2018/9 - today}{at ETH Zurich}
+\cvline{PhD program}{Systems Biology}
+\cvline{Supervisor}{Prof. Dr. Constance Ciaudo}
+% \cvline{}{The MARCS Institute, Western Sydney University, Australia}
+
+\subsection{MSc Computer Science}
+\cvline{2015/9 - 2018/5}{at Technical University Berlin}
+\cvline{Grade}{1.1}
+
+\cvline{2018/5/10}{Master's thesis}
+\cvline{Title}{\emph{PAVOOC - An AI integrated web-app for CRISPR target recommendation}}
+\cvline{Grade}{1.0}
+\cvline{Supervisor}{Prof. Dr. Manfred Opper}
+\cvline{Assistant Supervisor}{Dr. Andreas Steffen}
+
+\subsection{BSc Computer Science}
+\cvline{2012/9 - 2016/8}{at Technical University Berlin}
+\cvline{Grade}{1.9}
+
+\cvline{2013/9 - 2014/2}{at University of La Laguna, Spain}
+\cvline{2015/9 - 2016/5}{at Jiao Tong University Shanghai}
+\cvline{2016/5/17}{Bachelor's thesis at Jiao Tong University}
+\cvline{Title}{\emph{Intercultural comparison of emotion recognition with EEG � A first attempt}}
+\cvline{Grade}{1.3}
+\cvline{Supervisor}{Prof. Dr. Bao Liang Lu (Shanghai)}
+\cvline{}{Prof. Dr. Benjamin Blankertz (Berlin)}
 
 
-% In the aside, each new line forces a line break
-\begin{aside}
-  \section{about}
-    Sieben-Höfe-Straße 100
-    72072 Tübingen
-    Germany
-    ~
-    \href{mailto:mail@moritz.de}{mail@moritzs.de}
-    \href{https://github.com/moritzschaefer}{github.com/moritzschaefer}
-  \section{languages}
-    german
-    english (toefl C1)
-    spanish (fluent)
-    chinese (HSK 3)
-    french notions
-  \section{coding}
-    %{\color{red} $\varheartsuit$} JavaScript
-    linux, docker, GPGPU, ML/data analysis, databases
-    Web:
-    python
-    HTML5(JS \& CSS3); frameworks: ReactJS, AngularJS, Flask
-    former:
-    C/C++, 3D/OpenGL, Android
-\end{aside}
+\subsection{Education}
+\cvline{2008/9 - 2011/6}{at Gewerbliche Schule T�bingen, Germany}
+\cvline{2011/6/7}{German Abitur with honors}
+\cvline{Grade}{1.2}
+\newpage
 
-\section{interests}
+% \section{Publications}
+\renewcommand\refname{Publications}
+\nocite{*}
+\bibliographystyle{plainyr-rev}
+\bibliography{ref_ms}
+% \printbibliography
 
-computational biology, genomics, protein folding, \\
-machine learning, data mining and analytics, \\
-web technologies%(full stack development),
-% hardware/electronics(pi/arduino), bluetooth le,
+\section{Research projects}
+\cvline{2016/10 - 2017/2}{Generation of arbitrary-sized fragments for \emph{ab
+    initio} protein structure prediction in Rosetta}
+\cvline{2014/10 - 2015/5}{Development of a reliable multi-channel RSS measurement tool for
+  Wireless Sensor Networks}
+\cvline{2010/9 - 2011/4}{GPGPU-accelerated ray tracing with OpenCL at ``Jugend forscht''}
+\cvline{2009/9 - 2010/4}{Development of an ultrasonic range analyzer for 3D localization at
+  ``Jugend forscht''}
 
-\section{education}
+\section{Scholarships}
+\cvline{2016/10 - 2018/6}{Deutschlandstipendium supported by General Electrics Germany}
+\cvline{2015/10 - 2016/10}{Deutschlandstipendium supported by Carmeq GmbH}
 
-\begin{entrylist}
-  \entry
-    {2017-2018}
-    {master thesis}
-    {Bayer AG @ oncology target discovery}
-    {Bioinformatics}
-  \entry
-    {2016-2018}
-    {M.Sc. (1.1)}
-    {TU Berlin}
-    {Computer Science}
-  \entry
-    {2015–2016}
-    {bachelor thesis (1.3) \& M.Sc.}
-    {Jiao Tong University, Shanghai}
-    {Computer Science}
-  \entry
-    {2013–2014}
-    {B.Sc.\ exchange program}
-    {Universidad de La Laguna, Tenerife (Spain)}
-    {Computer Science (Erasmus)}
-  \entry
-    {2012–2016}
-    {B.Sc.\ (1.9)}
-    {Technische Universität, Berlin}
-    {Computer Science}
-  \entry
-    {2011}
-    {German Abitur (1.2) with honors}
-    {Gewerbliche Schule, Tübingen}
-    {Specialization in computer science}
-\end{entrylist}
+\newpage
 
-\section{experience}
+% \section{Internships}
+%----------------------------------------------------------------------------------
+%            ACHTUNG: Bei ƒnderungen das "}" am Ende nicht vergessen!!!
+%----------------------------------------------------------------------------------
+% \cvline{4/2013 - 7/2013}{at Bielefeld University, Department Neurobiology \newline
+%                                                  work experience:
+%                                                  % Aufz‰hlung
+%                                                  \begin{itemize}
+%                                                     \item Simulation and modelling of neural networks
+%                                                     \item Electrophysiology
+%                                              \end{itemize}
+%                                              }
+% \cvline{4/2010 - 5/2010}{at Dachdeckerei Lay in Trier \newline
+%                                                work experience:
+%                                                % Aufz‰hlung
+%                                                \begin{itemize}
+%                                                   \item manual fabrication of construction materials \& tiling
+%                                                \end{itemize}
+% }%-- Gehˆrt zu \cvline
+% \cvline{1/2006 - 2/2006}{at German Federal Army's Military Vehicle and Tank Technology Department WTD 41 in Trier \newline
+%                                                work experience:
+%                                                % Aufz‰hlung
+%                                                \begin{itemize}
+%                                                   \item welding training
+%                                                   \item practical knowledge of general motor vehicle technology of tanks                          \end{itemize}
+% }%-- Gehˆrt zu \cvline
 
-\begin{entrylist}
-  \entry
-    {2017}
-    {{Antavi GmbH}}
-    {Software developer}
-    {\emph{Android \& iOS development}}
-  \entry
-    {2016}
-    {{Lamoda Group}}
-    {DevOps and software engineer}
-    {\emph{Marketing analysis software}}
-  \entry
-    {2015}
-    {\href{http://www.lamoda.ru/}{Lamoda}}
-    {Software developer}
-    {\emph{Marketing analysis software}}
-  \entry
-    {2014-2015}
-    {\href{http://www.rocket-internet.com/}{Rocket Internet}}
-    {Software developer}
-    {\emph{Big Data analysis and optimization for marketing department}}
-  \entry
-    {2013-2014}
-    {\href{http://www.lamudi.com/}{Lamudi/Carmudi}}
-    {Software developer}
-    {\emph{data mining for marketing department}}
-  \entry
-    {2012-2014}
-    {\href{http://brandpunkt.com}{BRANDPUNKT}}
-    {Student Job}
-    {\emph{Facebook HTML5 Desktop and Mobile Apps}}
-  \entry
-    {2011/2012}
-    {Sayarinapaj}
-    {Volunteering}
-    {\emph{One year volunteering in Bolivia}}
-  \entry
-    {2010/2011}
-    {Freelancing}
-    {Software developer}
-    {\emph{Creating dynamic on-demand web solutions}}
-  \entry
-    {2009-2011}
-    {\href{http://www.somfy.de}{Somfy.de}}
-    {Student job}
-    {\emph{Developing and hardware administration for marketing department }}
-  \entry
-    {2009 \& 2010}
-    {\href{http://jugend-forscht.de}{Jugend forscht e.V.}}
-    {research competition}
-    {\emph{ultrasonic range analyzer for 3d locating(2009), GPGPU ray tracing(2010)}}
-\end{entrylist}
+% \section{Sidelines}
+% \cvline{12/2013 - 9/2015}{Research and teaching assistant at neurobiology work group, \newline Bielefeld University}
+% % \cvline{2/2009 - 9/2009}{Waiter for the catering in the Restaurant Becker in Trier}
+% \cvline{11/2006 - 10/2007}{Workshop employee in the medical supply store Kersting-Fendel in Trier}
+% \newpage
 
-% \section{applications}
-%
-% \begin{entrylist}
-%   \entry
-%     {yearn}
-%     {title/name}
-%     {\href{url}{url title}}
-%     {explanation}
-% \end{entrylist}
+\section{Further Qualifications}
+\subsection{Computer skills}
+\cvline{Bioinformatics}{OMICs, Data Integration, Python/Pandas, Snakemake}
+\cvline{Machine/Deep Learning}{pytorch, scikit-learn}
+\cvline{Operating Systems}{Linux/Emacs, (Windows, macOS)}
+\cvline{Web}{React, Flask}
+\cvline{Software}{LaTeX, Inkscape/Adobe Illustrator, MS Office}
+% \cvline{Python}{high level and experiences}
+% \cvline{Arduino \& C++}{good level and experiences}
+% \cvline{Matlab}{high level and experiences}
+% \cvline{Cafe}{good level and experience}
+% \cvline{Linux}{High level and experience}
+% \cvline{Latex}{high level and experiences}
+% \cvline{MS Office}{good level}
 
-\section{publications}
+\subsection{Wetlab skills}
+\cvline{(s)RNA}{extraction, handling, RT-qPCR, NGS}
+\cvline{DNA}{extraction, design, cloning, PCR/screening}
 
-\begin{entrylist}
-  \entry
-    {2017}
-    {Neural Patterns between Chinese and Germans for EEG-based Emotion Recognition}
-    {\href{http://ieeexplore.ieee.org/abstract/document/8008300/?reload=true}{PDF}}
-    {}
-  \entry
-    {2015}
-    {A reliable multi-channel RSS measurement tool for Wireless Sensor Networks}
-    {\href{http://www.tkn.tu-berlin.de/index.php?id=159554}{TKN Project website}}
-    {}
-\end{entrylist}
+\subsection{Teaching}
+\cvline{Student teaching}{Wet Lab teaching for lab rotation students}
+\cvline{Course teaching}{Teaching Jupyter Notebooks, sRNA-seq analysis and data integration via Zoom}
+
+\subsection{Language skills}
+\cvline{German}{native language}
+\cvline{English}{fluent}
+\cvline{Spanish}{fluent}
+\cvline{Chinese}{notions, HSK3}
+%\cvline{Niederl‰ndisch}{Konversationssicher}
+
+\section{Social commitment}
+\subsection{AMB (academic staff representation at ETH)}
+\cvline{2020/3 - today}{Treasurer}
+\cvline{2019/10 - 2020/9}{Representative at ETH-Biology Departments Conference}
+\cvline{2019/2 - 2020/3}{Event Manager}
+
+\subsection{OILS (Open Innovation in Life Sciences)}
+\cvline{2020/10 - today}{Organization and Moderation of panel discussions \newline
+  \begin{itemize}
+    \item Scientists and Society - let's talk! - A panel discussion about science communication
+    \item Open up for Open Science � a panel discussion about the state of Open Science in Z�rich
+  \end{itemize}
+}
+
+\subsection{Others}
+\cvline{2019/10 - today}{Organization of Systems Biology PhD program retreat}
+\cvline{2014 - today}{Contribution to various open source software projects}
+\cvline{2011/8 - 2012/9}{Volunteering at school/nursery in Bolivia}
+
+% \section{Hobbys}
+% \renewcommand{\listitemsymbol}{-} % Das Aufz‰hlungszeichen f¸r die folgende Liste
+% \cvlistdoubleitem{Hiking}{Slacklining}
+% \cvlistdoubleitem{Snowboarding}{Climbing}
+% % \cvlistdoubleitem{Freeriding}{}
+\vspace{1cm}
+
+Z�rich \today % Aktuelles Datum und Stadt
+%\includegraphics[scale=0.2]{Moritz.jpg}\\ % Unterschrift. Lˆschen falls nicht vorhanden
 \end{document}
+
+
+%% end of file `Lebenslauf_Template.tex'.
