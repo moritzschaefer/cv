@@ -193,6 +193,8 @@
     \newunit%
     \printlist{publisher}%
     \setunit*{\addcomma\space}%
+    \printfield{doi}%
+    \setunit*{\addcomma\space}%
     \printfield{year}%
     \newunit%
   }

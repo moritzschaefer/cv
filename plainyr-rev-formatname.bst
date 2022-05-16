@@ -1,26 +1,3 @@
-%% plainyr-rev BibTeX style
-%% Author: Christian Plessl <christian@plesslweb.ch>
-%%
-%% This BibTeX style formats bibliographic entries like the plain style
-%% but sorts them in reverse chronological order, i.e., the newest 
-%% references are listed first.
-%%
-%% The style is almost identical to plainyr.bst, but changes only the sorting
-%% order.
-
-%% Changelog
-%% ---------------------------------------------------------------------------------
-%% 2009-04-29
-%% Modified BibTeX style to correctly sorting authors within a particular year, when
-%% no month is given or the month is the same
-%% Contributed by Hans Ekkehard Plesser, http://arken.umb.no/~plesser
-%% ---------------------------------------------------------------------------------
-%% 2009-02-21
-%% Modified BibTeX style to consider also the month field when sorting BibTeX entries.
-%%
-%% contributed by João Gomes, jvpgomes at gmail com, http://penhas.di.ubi.pt/~jgomes
-%% ---------------------------------------------------------------------------------
-
 %% /usr/local/lib/tex/bibtex/plainyr.bst, Mon Jun 29 08:06:48 1992
 %% Edit by Nelson H. F. Beebe <beebe@plot79.math.utah.edu>
 %% I've called this posting plainyr instead of the author's datasort
@@ -84,15 +61,18 @@ ENTRY
     school
     series
     title
-    doi
     type
     volume
     year
+    impact_factor
   }
   {}
   { label }
 
 INTEGERS { output.state before.all mid.sentence after.sentence after.block }
+
+
+
 
 FUNCTION {init.state.consts}
 { #0 'before.all :=
@@ -141,18 +121,26 @@ FUNCTION {output.check}
 
 FUNCTION {output.bibitem}
 { newline$
-  "\bibitem{" write$
-  cite$ write$
+  "\cvitem{" write$
+  year write$
   "}" write$
   newline$
+  "{" write$
   ""
   before.all 'output.state :=
 }
-
+FUNCTION {format.impactFactor}
+{ 
+impact_factor empty$
+    { "" }
+    {"\textbf{( Impact Factor:" impact_factor * " )}" *}
+  if$
+}
 FUNCTION {fin.entry}
 { add.period$
   write$
   newline$
+  "}" write$
 }
 
 FUNCTION {new.block}
@@ -245,7 +233,7 @@ FUNCTION {format.names}
   s num.names$ 'numnames :=
   numnames 'namesleft :=
     { namesleft #0 > }
-    { s nameptr "{ff~}{vv~}{ll}{, jj}" format.name$ 't :=
+    { "\FormatName{" s nameptr "{ff~}{vv~}{ll}{, jj}" format.name$ * "}" * 't :=
       nameptr #1 >
         { namesleft #1 >
             { ", " * t * }
@@ -284,13 +272,6 @@ FUNCTION {format.editors}
         { ", editor" * }
       if$
     }
-  if$
-}
-
-FUNCTION {format.doi}
-{ doi empty$
-    { "" }
-    { doi "d" change.case$ }
   if$
 }
 
@@ -607,15 +588,18 @@ FUNCTION {article}
   new.block
   crossref missing$
     { journal emphasize "journal" output.check
-      format.vol.num.pages output
-      
-      format.doi "doi" output.check
+      format.bvolume output
+      format.pages output
+      organization publisher new.sentence.checkb
+          organization output
+          publisher output
       format.date "year" output.check
     }
     { format.article.crossref output.nonnull
       format.pages output
     }
   if$
+  format.impactFactor output
   new.block
   note output
   fin.entry
@@ -1009,83 +993,6 @@ FUNCTION {sort.format.names}
   while$
 }
 
-FUNCTION {sort.format.month}
-{ 't :=
-  t #1 #3 substring$ "Jan" =
-  t #1 #3 substring$ "jan" =
-  or
-  { "12" }
-    { t #1 #3 substring$ "Feb" =
-      t #1 #3 substring$ "feb" =
-      or
-      { "11" }
-      { t #1 #3 substring$ "Mar" =
-        t #1 #3 substring$ "mar" =
-        or
-        { "10" }
-        { t #1 #3 substring$ "Apr" =
-          t #1 #3 substring$ "apr" =
-          or
-          { "09" }
-          { t #1 #3 substring$ "May" =
-            t #1 #3 substring$ "may" =
-            or
-            { "08" }
-            { t #1 #3 substring$ "Jun" =
-              t #1 #3 substring$ "jun" =
-              or
-              { "07" }
-              { t #1 #3 substring$ "Jul" =
-                t #1 #3 substring$ "jul" =
-                or
-                { "06" }
-                { t #1 #3 substring$ "Aug" =
-                  t #1 #3 substring$ "aug" =
-                  or
-                  { "05" }
-                  { t #1 #3 substring$ "Sep" =
-                    t #1 #3 substring$ "sep" =
-                    or
-                    { "04" }
-                    { t #1 #3 substring$ "Oct" =
-                      t #1 #3 substring$ "oct" =
-                      or
-                      { "03" }
-                      { t #1 #3 substring$ "Nov" =
-                        t #1 #3 substring$ "nov" =
-                        or
-                        { "02" }
-                        { t #1 #3 substring$ "Dec" =
-                          t #1 #3 substring$ "dec" =
-                          or
-                          { "01" }
-                          { "13" } % No month specified
-                        if$
-                        }
-                      if$
-                      }
-                    if$
-                    }
-                  if$
-                  }
-                if$
-                }
-              if$
-              }
-            if$
-            }
-          if$
-          }
-        if$
-        }
-      if$
-      }
-    if$
-    }
-  if$
- 
-}
- 
 FUNCTION {sort.format.title}
 { 't :=
   "A " #2
@@ -1174,70 +1081,22 @@ FUNCTION {editor.organization.sort}
   if$
 }
 
-
-%% Code for reverse sorting
-%% Contributed by Hans Ekkehard Plesser, http://arken.umb.no/~plesser
-
-% Take year, assuming it is four-digit, convert to int, subtract from 9999
-% and return as string on stack. For reverse chronological sorting.
-INTEGERS { pos k res }
-STRINGS { tmpyear }
-FUNCTION {reverse.year}
-{
- % ensure four digit year
- year empty$ 
-   { "9999" "missing year in " cite$ * ", using 9999 for sorting" * warning$ }  
-   { year text.length$ #4 = 
-       { year }
-       { "9999" "year not 4-digit in " cite$ * ", using 9999 for sorting" * warning$ }
-     if$
-   }
- if$
- 'tmpyear :=
-
- #0 'res := % will contain year as integer
-
- #5 'pos := % index into year, we pre-decrement, will enter body with 4..1
- { pos #1 - 'pos := pos }
- { 
-   % extract digit at pos, convert to ASCII, subtract 48 -> 0..9, store in k
-   tmpyear pos #1 substring$ chr.to.int$ #48 - 'k :=
-
-   { k duplicate$ #1 - 'k := }
-   {
-     pos #1 = 
-       { res #1000 + 'res := }
-	{
-	  pos #2 =
-	    { res #100 + 'res := }
-	    {
-	      pos #3 =
-		{ res #10 + 'res := }
-		{ res #1 + 'res := }
-	      if$ 
-	    }
-	  if$
-	}
-     if$
-   }
-   while$
- }
- while$
-
- #9999 res - 
- int.to.str$
-}
-
 FUNCTION {presort}
-{
-  % sort by reverse year
-  reverse.year
+{ type$ "book" =
+  type$ "inbook" =
+  or
+    'author.editor.sort
+    { type$ "proceedings" =
+        'editor.organization.sort
+        { type$ "manual" =
+            'author.organization.sort
+            'year.sort
+          if$
+        }
+      if$
+    }
+  if$
   "    "
-  *
-  month field.or.null
-  sort.format.month
-  *
-  " "
   *
   author field.or.null
   sort.format.names
@@ -1247,17 +1106,9 @@ FUNCTION {presort}
   title field.or.null
   sort.format.title
   *
-
-  % cite key for definitive disambiguation
-  cite$
-  *
-
-  % limit to maximum sort key length
   #1 entry.max$ substring$
-
   'sort.key$ :=
 }
-
 
 ITERATE {presort}
 
@@ -1289,24 +1140,18 @@ EXECUTE {initialize.longest.label}
 ITERATE {longest.label.pass}
 
 FUNCTION {begin.bib}
-{ preamble$ empty$
-    'skip$
-    { preamble$ write$ newline$ }
-  if$
-  "\begin{thebibliography}{"  longest.label  * "}" * write$ newline$
+{ 
 }
 
 EXECUTE {begin.bib}
 
 EXECUTE {init.state.consts}
 
-ITERATE {call.type$}
-%REVERSE {call.type$}
+REVERSE {call.type$}
 
 FUNCTION {end.bib}
-{ newline$
-  "\end{thebibliography}" write$ newline$
-}
+{ 
+newline$
+  }
 
 EXECUTE {end.bib}
-

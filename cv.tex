@@ -19,6 +19,22 @@
 \renewcommand*\familydefault{\sfdefault}
 \usepackage[T1]{fontenc}
 
+% to print own name bold in bibliography <==============================
+\def\FormatName#1{%
+  \def\myname{Moritz Schaefer}% <==============================================
+  \edef\name{#1}%
+  \ifx\name\myname
+    \textbf{#1}%
+  \else
+    \def\cofirstmyname{Moritz Schaefer*}% <==============================================
+    \ifx\name\cofirstmyname
+      \textbf{#1}%
+    \else
+      #1%
+    \fi
+  \fi
+} % ====================================================================
+
 %\AtBeginDocument{\setlength{\maketitlenamewidth}{6cm}}  % only for the classic theme, if you want to change the width of your name placeholder (to leave more space for your address details
 %\AtBeginDocument{\recomputelengths}                     % required when changes are made to page layout lengths
 
@@ -33,13 +49,13 @@
 %TITEL (optional, ggf. einfach die Zeile lËschen!)
 \title{curriculum vit\ae}
 %ADRESSE  (optional, ggf. einfach die Zeile lËschen!)
-\address{}
+\address{1090 Vienna, Austria}
 %HANDYNUMMER  (optional, ggf. einfach die Zeile lËschen!)
-\mobile{+49 176 47728841}
+% \mobile{+43 670 3577971}
 %FESTNETZNUMMER  (optional, ggf. einfach die Zeile lËschen!)
 %\phone{0123 / 12345678}
 %EMAIL-ADRESSE  (optional, ggf. einfach die Zeile lËschen!)
-\email{mail@moritzs.de}
+\email{mschaefer@cemm.at}
 %HOMEPAGE  (optional, ggf. einfach die Zeile lËschen!)
 % \homepage{moritzs.de}
 \homepage{github.com/moritzschaefer}
@@ -64,63 +80,70 @@
 \cvline{Place of birth}{Tübingen, Germany}
 \cvline{Nationality}{german}
 
-\section{Studies}
-\subsection{PhD applicant in Biology/Bioinformatics}
-\cvline{2018/9 - 2021/12}{at ETH Zurich}
+\section{Studies/Titles}
+\subsection{Doctor of Sciences (Dr. sc. ETH Zürich)}
+\cvline{2018-09 to 2021-12}{at ETH Zurich}
+\cvline{Department}{Biology}
 \cvline{PhD program}{Systems Biology}
 \cvline{Supervisor}{Prof. Dr. Constance Ciaudo}
-% \cvline{}{The MARCS Institute, Western Sydney University, Australia}
+\cvline{2021-11-05}{PhD thesis defense}
+\cvline{Title}{One layer at a time – disentangling canonical and noncanonical roles of the RNAi pathway in embryonic stem cells}
 
-\subsection{MSc Computer Science}
-\cvline{2015/9 - 2018/5}{at Technical University Berlin}
+\subsection{Master of Science (M. Sc.)}
+\cvline{2015-09 to 2018-05}{at Technical University Berlin}
+\cvline{Subject}{Computer Science}
 \cvline{Grade}{1.1}
 
-\cvline{2018/5/10}{Master's thesis}
+
+\cvline{2018-05-10}{Master's thesis}
 \cvline{Title}{\emph{PAVOOC - An AI integrated web-app for CRISPR target recommendation}}
 \cvline{Grade}{1.0}
 \cvline{Supervisor}{Prof. Dr. Manfred Opper}
 \cvline{Assistant Supervisor}{Dr. Andreas Steffen}
 
-\subsection{BSc Computer Science}
-\cvline{2012/9 - 2016/8}{at Technical University Berlin}
+\subsection{Bachelor of Science (B. Sc.)}
+\cvline{2012-09 to 2016-08}{at Technical University Berlin}
+\cvline{Subject}{Computer Science}
 \cvline{Grade}{1.9}
 
-\cvline{2013/9 - 2014/2}{at University of La Laguna, Spain}
-\cvline{2015/9 - 2016/5}{at Jiao Tong University Shanghai}
-\cvline{2016/5/17}{Bachelor's thesis at Jiao Tong University}
+\cvline{2013-09 to 2014-02}{at University of La Laguna, Spain}
+\cvline{2015-09 to 2016-05}{at Jiao Tong University Shanghai}
+\cvline{2016-05-17}{Bachelor's thesis at Jiao Tong University}
 \cvline{Title}{\emph{Intercultural comparison of emotion recognition with EEG - A first attempt}}
 \cvline{Grade}{1.3}
-\cvline{Supervisor}{Prof. Dr. Bao Liang Lu (Shanghai)}
-\cvline{}{Prof. Dr. Benjamin Blankertz (Berlin)}
+\cvline{Supervisor}{Prof. Dr. Bao Liang Lu (SJTU Shanghai)}
+\cvline{}{Prof. Dr. Benjamin Blankertz (TU Berlin)}
 
 
 \subsection{Education}
-\cvline{2008/9 - 2011/6}{at Gewerbliche Schule Tübingen, Germany}
-\cvline{2011/6/7}{German Abitur with honors}
+\cvline{2008-09 to 2011-06}{at Gewerbliche Schule Tübingen, Germany}
+\cvline{2011-06-07}{German Abitur with honors}
 \cvline{Grade}{1.2}
-\newpage
+% \newpage
 
-% \section{Publications}
-\renewcommand\refname{Publications}
+\section{Publications}
+
+% \renewcommand\refname{Publications}
 \nocite{*}
-\bibliographystyle{plainyr-rev}
+% \bibliographystyle{plainyr-rev}
+\bibliographystyle{plainyr-rev-formatname} % this one does not do a section
 \bibliography{ref_ms}
 % \printbibliography
 
 \section{Research projects}
-\cvline{2016/10 - 2017/2}{Generation of arbitrary-sized fragments for \emph{ab
+\cvline{2016-10 to 2017-02}{Generation of arbitrary-sized fragments for \emph{ab
     initio} protein structure prediction in Rosetta}
-\cvline{2014/10 - 2015/5}{Development of a reliable multi-channel RSS measurement tool for
+\cvline{2014-10 to 2015-05}{Development of a reliable multi-channel RSS measurement tool for
   Wireless Sensor Networks}
-\cvline{2010/9 - 2011/4}{GPGPU-accelerated ray tracing with OpenCL at ``Jugend forscht''}
-\cvline{2009/9 - 2010/4}{Development of an ultrasonic range analyzer for 3D localization at
+\cvline{2010-09 to 2011-04}{GPGPU-accelerated ray tracing with OpenCL at ``Jugend forscht''}
+\cvline{2009-09 to 2010-04}{Development of an ultrasonic range analyzer for 3D localization at
   ``Jugend forscht''}
 
 \section{Scholarships}
-\cvline{2016/10 - 2018/6}{Deutschlandstipendium supported by General Electrics Germany}
-\cvline{2015/10 - 2016/10}{Deutschlandstipendium supported by Carmeq GmbH}
+\cvline{2016-10 to 2018-06}{Deutschlandstipendium supported by General Electrics Germany}
+\cvline{2015-10 to 2016-10}{Deutschlandstipendium supported by Carmeq GmbH}
 
-\newpage
+% \newpage
 
 % \section{Internships}
 %----------------------------------------------------------------------------------
@@ -187,22 +210,22 @@
 
 \section{Social commitment}
 \subsection{AMB (academic staff representation at ETH)}
-\cvline{2020/3 - today}{Treasurer}
-\cvline{2019/10 - 2020/9}{Representative at ETH-Biology Departments Conference}
-\cvline{2019/2 - 2020/3}{Event Manager}
+\cvline{2020-03 to today}{Treasurer}
+\cvline{2019-10 to 2020-09}{Representative at ETH-Biology Departments Conference}
+\cvline{2019-02 to 2020-03}{Event Manager}
 
 \subsection{OILS (Open Innovation in Life Sciences)}
-\cvline{2020/10 - 2021/03}{Organization and Moderation of panel discussions \newline
+\cvline{2020-10 to 2021-03}{Organization and Moderation of panel discussions \newline
   \begin{itemize}
     \item Scientists and Society - let's talk! - A panel discussion about science communication
-    \item Open up for Open Science  a panel discussion about the state of Open Science in Zürich
+    \item Open up for Open Science - A panel discussion about the state of Open Science in Zürich
   \end{itemize}
 }
 
 \subsection{Others}
-\cvline{2019/10 - 2021/10}{Organization of Systems Biology PhD program retreat}
-\cvline{2014 - today}{Contribution to various open source software projects}
-\cvline{2011/8 - 2012/9}{Volunteering at school/nursery in Bolivia}
+\cvline{2019-10 to 2021-10}{Organization of Systems Biology PhD program retreat}
+\cvline{2014 to today}{Contribution to various open source software projects}
+\cvline{2011-08 to 2012-09}{Volunteering at school/nursery in Bolivia}
 
 % \section{Hobbys}
 % \renewcommand{\listitemsymbol}{-} % Das Aufzâ°hlungszeichen fÂ¸r die folgende Liste
@@ -211,7 +234,7 @@
 % % \cvlistdoubleitem{Freeriding}{}
 \vspace{1cm}
 
-Zürich \today % Aktuelles Datum und Stadt
+% Vienna \today % Aktuelles Datum und Stadt
 %\includegraphics[scale=0.2]{Moritz.jpg}\\ % Unterschrift. LËschen falls nicht vorhanden
 \end{document}
 
